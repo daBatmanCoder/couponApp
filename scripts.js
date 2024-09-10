@@ -14,6 +14,8 @@ function verifyCoupon() {
       resultDiv.textContent = 'Unable to retrieve user address.';
       return;
     }
+    resultDiv.textContent = 'Your request is being checked...\n if everything is alright you will receive the product in a few moments.';
+
 
     const url = 'https://us-central1-arnacon-nl.cloudfunctions.net/verify_coupon';
     const dataToSend = {
@@ -31,11 +33,11 @@ function verifyCoupon() {
     .then(response => response.text())
     .then(data => {
         resultDiv.textContent = '';
-      if (data.valid) {
-        resultDiv.textContent = 'Coupon is valid!';
-      } else {
-        resultDiv.textContent = 'Coupon is invalid.';
-      }
+    //   if (data.valid) {
+    //     resultDiv.textContent = 'Coupon is valid!';
+    //   } else {
+    //     resultDiv.textContent = 'Coupon is invalid.';
+    //   }
     })
     .catch(error => {
       resultDiv.textContent = 'Error verifying coupon: ' + error.message;
