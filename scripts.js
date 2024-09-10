@@ -15,16 +15,22 @@ function verifyCoupon() {
       return;
     }
 
-    fetch('https://us-central1-arnacon-nl.cloudfunctions.net/verify_coupon', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'user_address': userAddress
-      },
-      body: JSON.stringify({ coupon_code: couponCode })
+    const url = 'https://us-central1-arnacon-nl.cloudfunctions.net/verify_coupon';
+    const dataToSend = {
+      coupon_code: couponCode,
+      user_address: userAddress
+    };
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend)
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
+        resultDiv.textContent = '';
       if (data.valid) {
         resultDiv.textContent = 'Coupon is valid!';
       } else {
