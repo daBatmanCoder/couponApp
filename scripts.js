@@ -1,3 +1,34 @@
+const inputField = document.getElementById('coupon-input');
+// const warning = document.getElementById('warning');
+
+inputField.addEventListener('input', function() {
+
+    // // Check if there are any disallowed characters
+    // let originalValue = this.value;
+
+    // // Allow only lowercase letters, numbers, and "-" signs
+    // let filteredValue = originalValue.replace(/[^a-z0-9-]/g, '');
+
+    // // Set the filtered value back to the input
+    // this.value = filteredValue;
+
+    // // If the original input is not the same as the filtered, show the warning
+    // if (originalValue !== filteredValue) {
+    //     warning.style.display = 'block';
+    // } else {
+    //     warning.style.display = 'none';
+
+    // Convert uppercase letters to lowercase and filter other disallowed characters
+    let originalValue = this.value;
+
+    // Replace any disallowed characters and automatically convert uppercase letters to lowercase
+    let filteredValue = originalValue.toLowerCase().replace(/[^a-z0-9-]/g, '');
+
+    // Set the filtered value back to the input
+    this.value = filteredValue;
+    // }
+});
+
 function verifyCoupon() {
     const couponInput = document.getElementById('coupon-input');
     const couponCode = couponInput.value.trim();
