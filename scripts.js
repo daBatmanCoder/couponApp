@@ -32,7 +32,7 @@ function verifyCoupon() {
     })
     .then(response => response.text())
     .then(data => {
-        resultDiv.textContent = '';
+        resultDiv.textContent = 'Succcesfully verified coupon: ' + couponCode;
     //   if (data.valid) {
     //     resultDiv.textContent = 'Coupon is valid!';
     //   } else {
