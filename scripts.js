@@ -61,7 +61,19 @@ function verifyCoupon() {
         },
         body: JSON.stringify(dataToSend)
     })
-    .then(response => response.text())
+    .then(response => {
+      if (!response.ok) {
+        // Handle HTTP errors here based on status code
+        if (response.status === 409) {
+            resultDiv.textContent = 'Coupon already verified.';
+        } else if (response.status === 404) {
+          resultDiv.textContent = 'Coupon not found.';
+        } else if (response.status >= 400 && response.status < 500) {
+          resultDiv.textContent = 'Client error: ' + response.status;
+        }
+    }
+    return response.text(); // or response.json() depending on response type
+    })
     .then(data => {
         resultDiv.textContent = 'Succcesfully verified coupon: ' + couponCode;
     //   if (data.valid) {
